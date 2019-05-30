@@ -1,5 +1,3 @@
-
-
 class VendingMachine
     def initialize(products)
         @products = products
