@@ -15,9 +15,46 @@ class VendingMachine
         puts "Code : Product        Price"
         puts "_______________________________________"
         products.each {|code, value|  puts "#{code}  : #{value[:name]}      #{value[:price]}" }
+        getting_money
     end
 
-    def verifying_money(code, cash)
+    def getting_money
+        printf "Credit :"
+        cash = insert_money
+        puts cash
+        verifying_money(cash)
+    end
+
+
+    
+    def verifying_money(cash)
+        if cash < 0
+            puts "Money error.Please reinsert."
+            cash = 0
+            getting_money
+        elsif cash < 4
+            puts "The minimum ammount of money to purchase a product is 4.0 RON"
+            cash = 0
+            getting_money
+        end
+        cash
+    end
+
+    def getting_product_code
+        printf "Code:"
+        code = gets.chomp
+        code
+    end
+
+    def verifying_code(code)
+
+
+
+
+    end
+
+
+    def product_verification(code, cash)
         drink = products[code]
         if cash < drink[:price]
           puts "Not enough credit,please reinsert your money!"

@@ -6,27 +6,15 @@ products = {
     "003" => { name: 'Coffee   ',    price: 5.0  },
     "004" => { name: 'Tea      ',       price: 5.5  }
 }
-
 def insert_money
-    printf "Credit :"
     cash = gets.to_f
-    if cash < 0
-        puts "Money error.Please reinsert."
-        cash = 0
-        insert_money
-    elsif cash < 4
-        puts "The minimum ammount of money to purchase a product is 4.0 RON"
-        cash = 0
-        insert_money
-    end
-    cash
 end
 
 def type_code        
-    printf "Code:"
     code = gets.chomp
-    code
 end
+
+
 
 def take_change
     puts "You have taken the change."
@@ -44,9 +32,6 @@ def take_product
      end
 end
 
-
 v = VendingMachine.new(products)
 v.on_standby
-cash = insert_money
-code = type_code
-v.verifying_money(code,cash)  
+
