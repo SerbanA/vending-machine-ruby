@@ -15,27 +15,29 @@ class VendingMachine
         puts "Code : Product        Price"
         puts "_______________________________________"
         products.each {|code, value|  puts "#{code}  : #{value[:name]}      #{value[:price]}" }
-        getting_product_code
+        cash = getting_money
+        code = getting_product_code
+        product_verification(code,cash)
     end
 
     def getting_money
         printf "Credit :"
         cash = insert_money
-        puts cash
         verifying_money(cash)
     end
 
     def verifying_money(cash)
         if cash < 0
-            puts "Money error.Please reinsert."
+            puts "Money error.Please re-insert."
             cash = 0
             getting_money
         elsif cash < 4
             puts "The minimum ammount of money to purchase a product is 4.0 RON"
             cash = 0
             getting_money
+        else
+            cash
         end
-        cash
     end
 
     def getting_product_code
@@ -47,7 +49,8 @@ class VendingMachine
 
     def verifying_code(code)
         if products.key?(code) == false
-            puts "Item does not exist"
+            puts "Item does not exist.Please type only the code available."
+            getting_product_code
         end
         code
     end
@@ -63,6 +66,7 @@ class VendingMachine
            puts "Please retrieve your change:#{change}"
            take_change
         end
+        releasing_product
     end
 
     def releasing_product
