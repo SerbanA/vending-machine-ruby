@@ -10,6 +10,15 @@ products = {
 def insert_money
     printf "Credit :"
     cash = gets.to_f
+    if cash < 0
+        puts "Money error.Please reinsert."
+        cash = 0
+        insert_money
+    elsif cash < 4
+        puts "The minimum ammount of money to purchase a product is 4.0 RON"
+        cash = 0
+        insert_money
+    end
     cash
 end
 
