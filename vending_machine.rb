@@ -15,7 +15,7 @@ class VendingMachine
         puts "Code : Product        Price"
         puts "_______________________________________"
         products.each {|code, value|  puts "#{code}  : #{value[:name]}      #{value[:price]}" }
-        getting_money
+        getting_product_code
     end
 
     def getting_money
@@ -25,8 +25,6 @@ class VendingMachine
         verifying_money(cash)
     end
 
-
-    
     def verifying_money(cash)
         if cash < 0
             puts "Money error.Please reinsert."
@@ -42,17 +40,17 @@ class VendingMachine
 
     def getting_product_code
         printf "Code:"
-        code = gets.chomp
-        code
+        code = type_code
+        puts code
+        verifying_code(code)
     end
 
     def verifying_code(code)
-
-
-
-
+        if products.key?(code) == false
+            puts "Item does not exist"
+        end
+        code
     end
-
 
     def product_verification(code, cash)
         drink = products[code]
@@ -87,5 +85,3 @@ class VendingMachine
  private    
      attr_reader :products
 end
-
-

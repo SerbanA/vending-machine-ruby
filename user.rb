@@ -14,8 +14,6 @@ def type_code
     code = gets.chomp
 end
 
-
-
 def take_change
     puts "You have taken the change."
     change = 0  
