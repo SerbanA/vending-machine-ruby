@@ -1,10 +1,10 @@
 require_relative 'vending_machine'
 
 products = {
-    "001" => { name: 'Coca-Cola', price: 4.0  },
-    "002" => { name: 'Sprite   ',    price: 6.0  },
-    "003" => { name: 'Coffee   ',    price: 5.0  },
-    "004" => { name: 'Tea      ',       price: 5.5  }
+    "001" => { name: 'Coca-Cola', price: 4.0, quantity: 10 },
+    "002" => { name: 'Sprite',    price: 6.0, quantity: 10 },
+    "003" => { name: 'Coffee',    price: 5.0, quantity: 10 },
+    "004" => { name: 'Tea',       price: 5.5, quantity: 10 }
 }
 def insert_money
     cash = gets.to_f
@@ -17,7 +17,6 @@ end
 def take_change
     puts "You have taken the change."
     change = 0  
-    releasing_product
 end
 
 def take_product
@@ -27,7 +26,7 @@ def take_product
       product_validate_yes
      when "n" 
       product_validate_no
-     end
+    end
 end
 
 v = VendingMachine.new(products)

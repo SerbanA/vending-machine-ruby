@@ -12,9 +12,10 @@ class VendingMachine
 
     def listing_products
         puts
-        puts "Code : Product        Price"
-        puts "_______________________________________"
-        products.each {|code, value|  puts "#{code}  : #{value[:name]}      #{value[:price]}" }
+        puts " Code : Product    Price   Quantity"
+        puts "____________________________________"
+        products.each {|code, value|  
+        puts " #{code.ljust(5)}: #{value[:name].ljust(12)}#{value[:price].to_s.ljust(9)} #{value[:quantity]}" }
         cash = getting_money
         code = getting_product_code
         product_verification(code,cash)
@@ -65,13 +66,14 @@ class VendingMachine
            change = cash - drink[:price]
            puts "Please retrieve your change:#{change}"
            take_change
-        end
-        releasing_product
+        end 
+        releasing_product(code)
     end
 
-    def releasing_product
-     #reducing the quantity of said product by 1
-     puts "Your product is in the bin,will you retrive it?[y/n]"
+    def releasing_product(code)
+     drink = products[code]
+     drink[:quantity] -= 1
+     puts "Your #{drink[:name]} is in the bin,will you retrive it?[y/n]"
      take_product
     end
 
@@ -82,6 +84,8 @@ class VendingMachine
     def product_validate_yes
         puts "Thank you for your patronage!"
         puts "Have a great day!"
+        sleep(5)
+        on_standby
     end
 
 
