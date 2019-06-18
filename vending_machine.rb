@@ -52,8 +52,9 @@ class VendingMachine
         if products.key?(code) == false
             puts "Item does not exist.Please type only the code available."
             getting_product_code
+        else
+         code
         end
-        code
     end
 
     def product_verification(code, cash)
