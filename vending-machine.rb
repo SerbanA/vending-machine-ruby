@@ -1,26 +1,35 @@
-products = {
-    "001" => { name: 'Coca-Cola', price: 4.0, quantity: 10 },
-    "002" => { name: 'Sprite',    price: 6.0, quantity: 10 },
-    "003" => { name: 'Coffee',    price: 5.0, quantity: 10 },
-    "004" => { name: 'Tea',       price: 5.5, quantity: 10 }
-}
 class VendingMachine  
-
- def initialize(products, code, money)    
-   @code = code
-   @money = money
+ 
+  def initialize(products)    
    @product = products
- end
+  end
 
- def get_info(products, code, money) 
-    product = products[code]
-    puts "Code: #{@code}, Money: #{@money}, and Product: #{product[:name]}, and Quantity: #{product[:quantity]}"  
-    product[:quantity] -= 1
-   
- end
+  def inserting_money(credit)
+    exit = 0
+    while (exit == 0) do
+     option = gets.chomp
+     case option
+      when "1"
+        credit += 0.5
+        puts "CREDIT: #{credit}"
+      when "2"
+        credit += 1
+        puts "CREDIT: #{credit}"
+      when "3"
+       credit += 5
+       puts "CREDIT: #{credit}"
+      when "4"
+        credit += 10
+        puts "CREDIT: #{credit}"
+      when "5"
+        exit = 1
+      else 
+        puts "Invalid currency!"
+     end
+    end
+    credit
+  end
+
+
 end
 
-code = "001"
-money = 5
-my_purchase = VendingMachine.new(products, code, money)
-my_purchase.get_info(products, code, money)
