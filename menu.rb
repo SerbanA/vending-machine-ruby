@@ -40,8 +40,11 @@ def refresh_stock
   puts "Option to replenish stock,should a certain key be provided"
 end
 
-def check_money
-  puts "option to check ammount of cash in the machine should a key be provided"
+def cash_storage_menu(v)
+  total_cash = 0
+  v.storage.each {|value, ammount|
+   total_cash = total_cash + ( value * ammount ) }
+ puts "Total ammount of cash: #{total_cash}"
 end
 
 def option_not_valid

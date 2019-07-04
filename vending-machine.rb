@@ -1,12 +1,12 @@
 class VendingMachine
 
-  attr_reader :products, :credit, :code, :internal_money_storage
+  attr_reader :products, :credit, :code, :storage
 
-  def initialize(products = {}, credit = 0, code = "NOT CODE GIVEN", internal_money_storage = [])
+  def initialize(products = {}, credit = 0, code = "NO CODE GIVEN", storage = {})
    @products = products
    @credit = credit
    @code = code
-   @internal_money_storage = internal_money_storage
+   @storage = storage
   end
 
   def inserting_money(inserted_credit)
@@ -36,10 +36,12 @@ class VendingMachine
   def code_validation(products, code)
     if products.key?(code) == false
       puts "Item does not exist."
-      product_code_processing(products)
+      product_code_menu
     else
       code
     end
   end
+
+
 
 end

@@ -2,17 +2,24 @@ require_relative 'vending-machine'
 require_relative 'menu'
 
 def main
-  internal_money_storage = [5, 5, 5, 5]
+  storage = { 
+    "0.5" => 5,
+    "1" => 5,
+    "5" => 5,
+    "10" => 5
+  }
+
   products = {
       "001" => { name: 'Coca-Cola', price: 4.0, quantity: 10 },
       "002" => { name: 'Sprite',    price: 6.0, quantity: 10 },
       "003" => { name: 'Coffee',    price: 5.0, quantity: 10 },
       "004" => { name: 'Tea',       price: 5.5, quantity: 10 }
   }
+
   credit = 0
   code = "0"
   exit_program = 0
-  v = VendingMachine.new(products, credit, code, internal_money_storage)
+  v = VendingMachine.new(products, credit, code, storage)
 
   while (exit_program == 0) do
     show_main_menu(v)
@@ -20,7 +27,7 @@ def main
     case option
         when "1"
           inserting_money_menu(v)
-          money = get_money_from_user
+          money = get_money_from_user(storage)
           v.inserting_money(money)
         when "2"
           product_code_menu(v)
@@ -28,9 +35,9 @@ def main
         when "3"
           finalize_order
         when "4"
-          refresh_stock
+          refresh_stock(products)
         when "5"
-          check_money
+          cash_storage_menu(v)
         when "6"
           exit_program = 1
         else
@@ -39,26 +46,26 @@ def main
   end
 end
 
-def get_money_from_user
-  credit = -1
-  while (credit < 0) do
+def get_money_from_user(storage)
+  credit = 0
+  while (credit <= 0) do
     puts "Please insert:"
     option = gets.chomp
-    credit = case option
+    case option
     when "1"
-      0.5
-      internal_money_storage[0] +=1
+      credit += 0.5
+      storage["0.5"] += 1 
     when "2"
-      1
-      internal_money_storage[1] +=1
+      credit += 1
+      storage["1"] += 1
     when "3"
-      5
-      internal_money_storage[2] +=1
+      credit += 5
+      storage["5"] += 1
     when "4"
-      10
-      internal_money_storage[3] +=1
+      credit += 10
+      storage["10"] += 1
     when "5"
-      0
+      break
     else
       puts "Invalid choice"
       credit
