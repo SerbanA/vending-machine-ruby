@@ -17,10 +17,10 @@ def main
   }
 
   credit = 0
-  code = "0"
   exit_program = 0
+  code = " "
   v = VendingMachine.new(products, credit, code, storage)
-
+  
   while (exit_program == 0) do
     show_main_menu(v)
     option = gets.chomp
@@ -31,7 +31,7 @@ def main
           v.inserting_money(money)
         when "2"
           product_code_menu(v)
-          code = v.product_code_processing()
+          code = v.product_code_processing
         when "3"
           finalize_order
         when "4"
@@ -41,7 +41,7 @@ def main
         when "6"
           exit_program = 1
         else
-          puts "blyat"
+          puts "No wizard powers allowed!"
     end
   end
 end

@@ -16,11 +16,13 @@ class VendingMachine
   def product_code_processing
     exit = 0
     while (exit == 0) do
+      puts "1.Type Code"
+      puts "2.Exit"
       option = gets.chomp
       case option
         when "1"
           printf "Code:"
-          code = gets.chomp
+          @code = gets.chomp
           code_validation(products, code)
           exit = 1
         when "2"
@@ -36,7 +38,8 @@ class VendingMachine
   def code_validation(products, code)
     if products.key?(code) == false
       puts "Item does not exist."
-      product_code_menu
+      @code = "NaN"
+      product_code_processing
     else
       code
     end

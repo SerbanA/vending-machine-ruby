@@ -28,8 +28,6 @@ def product_code_menu(v)
   puts "CREDIT: #{v.credit}   CODE:#{v.code}"
   v.products.each {|code, value|
   puts " #{code.ljust(5)}: #{value[:name].ljust(12)}#{value[:price].to_s.ljust(9)} #{value[:quantity]}" }
-  puts "1.Type Code"
-  puts "2.Exit"
 end
 
 def finalize_order
@@ -37,7 +35,7 @@ def finalize_order
 end
 
 def refresh_stock(v)
-  puts "Resupplying product stock!"
+  puts "Resupplying product stock..."
   v.products.each {|code, value|
      value[:quantity] = 10
   }
