@@ -63,8 +63,7 @@ class VendingMachine
          if credit < product[:price]
            puts "Insufficient credit!Returning to main menu."
            exit = 1
-           show_main_menu(v)
-         elsif credit >= product[:price]
+         elsif ((credit >= product[:price]) and (product[:quantity]>0))
            puts "Please retrieve your product and change"
            product[:quantity] -= 1 
            change = credit - product[:price]  
@@ -89,7 +88,10 @@ class VendingMachine
              @code = " "
              exit = 1
             end
-          end
+         else 
+          puts "Product not available, returning to main menu"
+          exit = 1
+        end
        when "2"
          exit = 1
        else 
