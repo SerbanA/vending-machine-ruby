@@ -3,16 +3,16 @@ require_relative 'menu'
 
 def main
   storage = { 
-    "0.5" => 5,
-    "1" => 5,
-    "5" => 5,
-    "10" => 5
+    0.5 => 5,
+    1 => 5,
+    5 => 5,
+    10 => 5
   }
 
   products = {
-      "001" => { name: 'Coca-Cola', price: 4.0, quantity: 10 },
-      "002" => { name: 'Sprite',    price: 6.0, quantity: 10 },
-      "003" => { name: 'Coffee',    price: 5.0, quantity: 10 },
+      "001" => { name: 'Coca-Cola', price: 4.0, quantity: 5 },
+      "002" => { name: 'Sprite',    price: 6.0, quantity: 8 },
+      "003" => { name: 'Coffee',    price: 5.0, quantity: 0 },
       "004" => { name: 'Tea',       price: 5.5, quantity: 10 }
   }
 
@@ -35,7 +35,7 @@ def main
         when "3"
           finalize_order
         when "4"
-          refresh_stock(products)
+          refresh_stock(v)
         when "5"
           cash_storage_menu(v)
         when "6"
@@ -54,16 +54,16 @@ def get_money_from_user(storage)
     case option
     when "1"
       credit += 0.5
-      storage["0.5"] += 1 
+      storage[0.5] += 1 
     when "2"
       credit += 1
-      storage["1"] += 1
+      storage[1] += 1
     when "3"
       credit += 5
-      storage["5"] += 1
+      storage[5] += 1
     when "4"
       credit += 10
-      storage["10"] += 1
+      storage[10] += 1
     when "5"
       break
     else
@@ -73,5 +73,11 @@ def get_money_from_user(storage)
   end
   credit
 end
+
+
+
+
+
+
 
 main
