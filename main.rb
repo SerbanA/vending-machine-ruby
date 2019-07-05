@@ -3,10 +3,10 @@ require_relative 'menu'
 
 def main
   storage = { 
-    0.5 => 5,
-    1 => 5,
-    5 => 5,
-    10 => 5
+    0.5 => 10,
+    1 => 10,
+    5 => 10,
+    10 => 10
   }
 
   products = {
@@ -33,7 +33,8 @@ def main
           product_code_menu(v)
           code = v.product_code_processing
         when "3"
-          finalize_order(v)
+          finalize_order_menu(v)
+          v.order_processing
         when "4"
           refresh_stock(v)
         when "5"
@@ -73,11 +74,5 @@ def get_money_from_user(storage)
   end
   credit
 end
-
-
-
-
-
-
 
 main

@@ -45,6 +45,56 @@ class VendingMachine
     end
   end
 
-
-
+  def order_processing
+    product = products[code]
+    total_cost = 0
+    puts "1 X #{product[:name]}   Price: #{product[:price]}"
+    total_cost += product[:price]
+    puts "__________________________________"
+    puts "Total Cost:            #{total_cost}"
+    exit = 0
+    while (exit == 0) do
+     puts "1.Confirm order and finish process"
+     puts "2.Return to main menu"
+     puts "Choice:"
+     option = gets.chomp
+     case option
+       when "1" 
+         if credit < product[:price]
+           puts "Insufficient credit!Returning to main menu."
+           exit = 1
+           show_main_menu(v)
+         elsif credit >= product[:price]
+           puts "Please retrieve your product and change"
+           product[:quantity] -= 1 
+           change = credit - product[:price]  
+           if change != 0 
+             while ((change > 9) and (storage[10] > 0))
+               change -= 10
+               storage[10] -= 1
+             end
+             while ((change > 4) and (storage[5] > 0))
+                change -= 5
+                storage[5] -= 1
+             end
+             while ((change > 0.9) and (storage[1] > 0))
+                change -= 1
+                storage[1] -= 1
+             end
+             while ((change > 0) and (storage[0.5] > 0))
+                change -= 0.5
+                storage[0.5] -= 1
+             end
+             @credit = change
+             @code = " "
+             exit = 1
+            end
+          end
+       when "2"
+         exit = 1
+       else 
+         puts "No wizard powers allowed, returning to main menu...."
+      end
+    end
+  end
 end
