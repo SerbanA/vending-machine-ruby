@@ -6,7 +6,7 @@ def show_main_menu(v)
   puts " #{code.ljust(5)}: #{value[:name].ljust(12)}#{value[:price].to_s.ljust(9)} #{value[:quantity]}" }
   
   puts "1.Insert money"#done
-  puts "2.Type product code"#make code visible after typing
+  puts "2.Type product code"#done
   puts "3.Finalize order"#WIP
   puts "4.Refresh stock"#done
   puts "5.Check money"#done
@@ -30,8 +30,17 @@ def product_code_menu(v)
   puts " #{code.ljust(5)}: #{value[:name].ljust(12)}#{value[:price].to_s.ljust(9)} #{value[:quantity]}" }
 end
 
-def finalize_order
-  puts "The confirmation of the order,displaying the order, total ammount to pay,option to cancel the order"
+def finalize_order(v)
+  puts "CREDIT: #{v.credit}   CODE:#{v.code}"
+  puts "Your order:"
+  product = v.products[v.code]
+  total_cost = 0
+  puts "1 X #{product[:name]}   Price: #{product[:price]}"
+  total_cost += product[:price]
+  puts "__________________________________"
+  puts "Total Cost:            #{total_cost}"
+
+
 end
 
 def refresh_stock(v)

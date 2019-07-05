@@ -33,7 +33,7 @@ def main
           product_code_menu(v)
           code = v.product_code_processing
         when "3"
-          finalize_order
+          finalize_order(v)
         when "4"
           refresh_stock(v)
         when "5"
