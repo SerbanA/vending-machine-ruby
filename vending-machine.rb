@@ -7,12 +7,17 @@ class VendingMachine
    @credit = credit
    @code = code
    @storage = storage
+   #@stmp_torage = storage
   end
 
   def inserting_money(inserted_credit)
     @credit = @credit + inserted_credit
   end
-
+=begin
+  def credit
+    #calculate the credit form tmp_storage
+  end
+=end
   def product_code_processing
     exit = 0
     while (exit == 0) do
@@ -68,7 +73,7 @@ class VendingMachine
            product[:quantity] -= 1 
            change = credit - product[:price]  
            if change != 0 
-             while ((change > 9) and (storage[10] > 0))
+             while ((change > 9) && (storage[10] > 0))
                change -= 10
                storage[10] -= 1
              end
@@ -85,7 +90,7 @@ class VendingMachine
                 storage[0.5] -= 1
              end
              @credit = change
-             @code = " "
+             @code = ""
              exit = 1
             end
          else 

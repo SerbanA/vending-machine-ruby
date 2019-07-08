@@ -1,13 +1,15 @@
 require_relative 'vending-machine'
 require_relative 'menu'
 
+
+def change_storage(storage)
+
+  storage = "hello 100"
+  storage
+end
+
 def main
-  storage = { 
-    0.5 => 10,
-    1 => 10,
-    5 => 10,
-    10 => 10
-  }
+  storage = "hello 10"
 
   products = {
       "001" => { name: 'Coca-Cola', price: 4.0, quantity: 5 },
@@ -15,12 +17,23 @@ def main
       "003" => { name: 'Coffee',    price: 5.0, quantity: 0 },
       "004" => { name: 'Tea',       price: 5.5, quantity: 10 }
   }
+  
 
   credit = 0
   exit_program = 0
-  code = " "
+  code = ""
   v = VendingMachine.new(products, credit, code, storage)
   
+  puts "init storage #{storage}"
+  puts "v storage #{v.storage}"
+
+  new_storage = change_storage(storage)
+
+  puts " =>>>new_storage #{new_storage}"
+  puts " =>>>storage #{storage}"
+  puts "=>>> VM storage #{v.storage}"
+
+
   while (exit_program == 0) do
     show_main_menu(v)
     option = gets.chomp
