@@ -77,15 +77,15 @@ class VendingMachine
                change -= 10
                storage[10] -= 1
              end
-             while ((change > 4) and (storage[5] > 0))
+             while ((change > 4) && (storage[5] > 0))
                 change -= 5
                 storage[5] -= 1
              end
-             while ((change > 0.9) and (storage[1] > 0))
+             while ((change > 0.9) && (storage[1] > 0))
                 change -= 1
                 storage[1] -= 1
              end
-             while ((change > 0) and (storage[0.5] > 0))
+             while ((change > 0) && (storage[0.5] > 0))
                 change -= 0.5
                 storage[0.5] -= 1
              end
